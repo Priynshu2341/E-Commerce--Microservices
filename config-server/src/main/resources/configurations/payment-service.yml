@@ -1,0 +1,43 @@
+server:
+  port: 8070
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
+    username: venom
+    password: venom
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-init-sql: SET TIME ZONE 'Asia/Kolkata'
+      connection-test-query: SELECT 1
+
+  jackson:
+    time-zone: Asia/Kolkata
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate.jdbc.time_zone: Asia/Kolkata
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true
+        spring.json.trusted.packages: com.example.ecommerce.*
+        spring.json.type.mapping: PaymentNotificationRequest:com.example.ecommerce.kafka.PaymentNotificationRequest
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: INFO
+    org.apache.kafka: INFO

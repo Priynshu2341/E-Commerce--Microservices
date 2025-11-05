@@ -1,0 +1,16 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@127.0.0.1:27018/customer?authSource=admin
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: OrderConfirmation:com.example.ecommerce.kafka.order.OrderConfirmation
+
+
+server:
+  port: 8090
+

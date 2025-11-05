@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            background: #ffffff;
+            margin: 40px auto;
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .highlight {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        .section {
+            margin: 16px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f3f4f6;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Order Confirmation</h2>
+    <p>Hi <span th:text="${orderConfirmation.customer.firstname}">Customer</span>,</p>
+
+    <div class="section">
+        <p>Your order <strong th:text="${orderConfirmation.orderReference}">#12345</strong> has been successfully placed!</p>
+
+        <p>Total Amount:
+            <span class="highlight"
+                  th:text="${#numbers.formatDecimal(orderConfirmation.totalAmount, 1, 2)}">0.00</span>
+        </p>
+
+        <p>Payment Method:
+            <span th:text="${orderConfirmation.paymentMethod}">CARD</span>
+        </p>
+    </div>
+
+    <div class="section">
+        <h3>Order Details</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${orderConfirmation.products}">
+                <td th:text="${product.name}">Product Name</td>
+                <td th:text="${product.quantity}">1</td>
+                <td th:text="${#numbers.formatDecimal(product.price, 1, 2)}">0.00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>Thank you for shopping with <strong>VenomCoding</strong>!</p>
+        <p>We appreciate your business ❤️</p>
+    </div>
+</div>
+</body>
+</html>
