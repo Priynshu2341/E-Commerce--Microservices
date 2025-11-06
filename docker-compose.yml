@@ -13,7 +13,7 @@ services:
       POSTGRES_DB: ecommerce
       TZ: Asia/Kolkata
       PGTZ: Asia/Kolkata
-    command: ["postgres", "-c", "timezone=Asia/Kolkata"]
+    command: [ "postgres", "-c", "timezone=Asia/Kolkata" ]
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -127,6 +127,15 @@ services:
     networks:
       - microservices-net
     restart: unless-stopped
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      microservices-net:
+
 
 # --------------------------
 # Network and Volumes
