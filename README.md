@@ -56,10 +56,10 @@ This project simulates a small online store where:
 
 ## 🗄️ Databases Used
 
-| Service | Database |
-|----------|-----------|
-| Customer, Order, Payment, Stock | PostgreSQL |
-| Notification | MongoDB |
+| Service                | Database |
+|------------------------|-----------|
+| Order, Payment, Stock  | PostgreSQL |
+| Notification ,Customer | MongoDB |
 
 ---
 
