@@ -19,7 +19,7 @@ public record StockRequest(
         double availableQuantity,
         @Positive(message = "Available Price must be positive")
         BigDecimal price,
-        @NotNull(message = "Category id is required")
+        @NotNull(message = "Category id  is required")
         Integer categoryId
 ) {
 }

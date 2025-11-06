@@ -1,11 +1,10 @@
 package com.example.stocks.service;
 
-import com.example.stocks.dto.StockRequest;
-import com.example.stocks.dto.StockResponse;
-import com.example.stocks.dto.StocksPurchaseRequest;
-import com.example.stocks.dto.StocksPurchaseResponse;
+import com.example.stocks.dto.*;
 import com.example.stocks.hadler.StockNotFoundException;
+import com.example.stocks.rep.CategoryRepository;
 import com.example.stocks.rep.StockRepository;
+import com.example.stocks.stock.Category;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +20,7 @@ public class StockService {
 
     private final StockRepository repository;
     private final StockMapper mapper;
+    private final CategoryRepository categoryRepository;
 
 
     public Integer createStock(@Valid StockRequest request) {
@@ -69,5 +69,12 @@ public class StockService {
                 .stream()
                 .map(mapper::toStockResponse)
                 .toList();
+    }
+
+    public Integer createStockCategory(@Valid CategoryRequest request) {
+        var category = mapper.toCategory(request);
+        categoryRepository.save(category);
+        return category.getId();
+
     }
 }

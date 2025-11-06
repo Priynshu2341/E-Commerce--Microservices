@@ -1,9 +1,6 @@
 package com.example.stocks.service;
 
-import com.example.stocks.dto.StockRequest;
-import com.example.stocks.dto.StockResponse;
-import com.example.stocks.dto.StocksPurchaseRequest;
-import com.example.stocks.dto.StocksPurchaseResponse;
+import com.example.stocks.dto.*;
 import com.example.stocks.stock.Category;
 import com.example.stocks.stock.Stocks;
 import jakarta.validation.Valid;
@@ -51,5 +48,13 @@ public class StockMapper {
                 stocks.getPrice(),
                 quantity
         );
+    }
+
+    public Category toCategory(@Valid CategoryRequest request) {
+        return Category
+                .builder()
+                .name(request.name())
+                .description(request.description())
+                .build();
     }
 }

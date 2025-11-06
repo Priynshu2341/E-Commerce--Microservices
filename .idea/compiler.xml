@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.5.7/18e7a39068a84cd401d758162a5a23a8b8b47b22/spring-boot-configuration-processor-3.5.7.jar" />
+        </processorPath>
+        <module name="config-server.main" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
+      <module name="config-server.main" options="-parameters" />
+      <module name="config-server.test" options="-parameters" />
+      <module name="customer" options="-parameters" />
+      <module name="customer.main" options="-parameters" />
+      <module name="customer.test" options="-parameters" />
+      <module name="discovery" options="-parameters" />
+      <module name="discovery.main" options="-parameters" />
+      <module name="discovery.test" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="gateway.main" options="-parameters" />
+      <module name="gateway.test" options="-parameters" />
+      <module name="notification" options="-parameters" />
+      <module name="notification.main" options="-parameters" />
+      <module name="notification.test" options="-parameters" />
+      <module name="order" options="-parameters" />
+      <module name="order.main" options="-parameters" />
+      <module name="order.test" options="-parameters" />
+      <module name="payment" options="-parameters" />
+      <module name="payment.main" options="-parameters" />
+      <module name="payment.test" options="-parameters" />
+      <module name="stocks" options="-parameters" />
+      <module name="stocks.main" options="-parameters" />
+      <module name="stocks.test" options="-parameters" />
+    </option>
+  </component>
+</project>

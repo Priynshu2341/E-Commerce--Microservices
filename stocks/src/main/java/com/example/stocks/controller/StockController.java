@@ -1,9 +1,6 @@
 package com.example.stocks.controller;
 
-import com.example.stocks.dto.StockRequest;
-import com.example.stocks.dto.StockResponse;
-import com.example.stocks.dto.StocksPurchaseRequest;
-import com.example.stocks.dto.StocksPurchaseResponse;
+import com.example.stocks.dto.*;
 import com.example.stocks.service.StockService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +19,11 @@ public class StockController {
     @PostMapping("/create")
     public ResponseEntity<Integer> createStock(@RequestBody @Valid StockRequest request) {
         return ResponseEntity.ok(service.createStock(request));
+    }
+
+    @PostMapping("/create/category")
+    public ResponseEntity<Integer> createStockCategory(@RequestBody @Valid CategoryRequest request){
+        return ResponseEntity.ok(service.createStockCategory(request));
     }
 
     @PostMapping("/purchase")
