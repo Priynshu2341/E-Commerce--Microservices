@@ -1,6 +1,7 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.dtos.requestdtos.OrderRequest;
+import com.example.ecommerce.dtos.responsedtos.OrderCreationResponse;
 import com.example.ecommerce.dtos.responsedtos.OrderResponse;
 import com.example.ecommerce.service.OrderService;
 import jakarta.validation.Valid;
@@ -19,7 +20,9 @@ public class OrderController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest request) {
-        return ResponseEntity.ok(service.createOrder(request));
+        OrderResponse data = service.createOrder(request);
+        var response = new OrderCreationResponse<OrderResponse>("Order Placed Successfully",data);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/get")

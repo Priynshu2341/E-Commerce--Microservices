@@ -32,7 +32,7 @@ public class OrderService {
     private final OrderProducer orderProducer;
     private final PaymentClient paymentClient;
 
-    public Integer createOrder(OrderRequest request) {
+    public OrderResponse createOrder(OrderRequest request) {
         var customer = customerClient.findCustomerByID(request.customerId())
                 .orElseThrow(() -> new BusinessException("Cannot Create Customer:: No Customer Exist With ID" + request.customerId()));
 
@@ -77,7 +77,8 @@ public class OrderService {
                 )
         );
         log.info("order success");
-        return order.getId();
+        return mapper.toOrderResponse(request);
+
     }
 
     public List<OrderResponse> findAll() {

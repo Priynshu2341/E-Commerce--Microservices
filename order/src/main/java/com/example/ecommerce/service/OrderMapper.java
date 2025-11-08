@@ -31,4 +31,14 @@ public class OrderMapper {
                 orders.getCustomerID()
         );
     }
+
+    public OrderResponse toOrderResponse(OrderRequest request) {
+        return new OrderResponse(
+                request.id(),
+                request.reference(),
+                request.amount(),
+                request.paymentMethod(),
+                request.customerId()
+        );
+    }
 }

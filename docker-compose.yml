@@ -135,6 +135,18 @@ services:
       - "9411:9411"
     networks:
       microservices-net:
+  # docker-compose.yml (add this service)
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    command: [ "start-dev", "--http-port=8089" ]   # dev mode, port 8089 to avoid clashes
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      microservices-net:
+    ports:
+      - "8089:8089"
 
 
 # --------------------------
