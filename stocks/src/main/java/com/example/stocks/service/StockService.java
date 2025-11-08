@@ -8,6 +8,8 @@ import com.example.stocks.stock.Category;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,8 +66,8 @@ public class StockService {
                 orElseThrow(() -> new EntityNotFoundException(""));
     }
 
-    public List<StockResponse> findAll() {
-        return repository.findAll()
+    public List<StockResponse> findAll(int page,int size) {
+        return repository.findAll(PageRequest.of(page,size))
                 .stream()
                 .map(mapper::toStockResponse)
                 .toList();
