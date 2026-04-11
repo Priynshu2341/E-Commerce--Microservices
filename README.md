@@ -1,73 +1,34 @@
-# 🛒 E-Commerce Microservices Project
+# E-Commerce Microservices System
 
-> ⚡ **Note:**  
-> This is the full and clean working project of the E-Commerce Microservices application.  
-> This repository may not contain many commits because it was built cleanly from scratch.  
-> The original development version can be found here → [Old Repository](https://github.com/Priynshu2341/e-commerce-Microservices/tree/microservices)
+A scalable backend system built using Spring Boot and Spring Cloud microservices architecture.  
+The system handles the complete order lifecycle using asynchronous communication and distributed services.
 
----
+## 🚀 Key Features
+- Order processing workflow (order → stock → payment → notification)
+- Event-driven architecture using Kafka
+- Service discovery with Eureka
+- API Gateway for centralized routing
+- Centralized configuration using Config Server
+- Email notifications for order confirmation
 
-A backend **E-Commerce application** built using **Spring Boot** and **Spring Cloud Microservices**.  
-It handles the complete workflow — from placing an order to processing payments and sending email notifications — using **Kafka**, **PostgreSQL**, **MongoDB**, and **Docker**.
+## ⚙️ Tech Stack
+- Java 17, Spring Boot 3
+- Spring Cloud (Eureka, Gateway, Config Server)
+- Apache Kafka (event-driven communication)
+- PostgreSQL & MongoDB
+- Docker & Docker Compose
 
-> 🧱 Built with **Gradle**, but can easily be switched to **Maven** if preferred.
+## 🧩 Microservices
+- Customer Service
+- Order Service
+- Payment Service
+- Stock Service
+- Notification Service
 
----
+## 🗄️ Databases
+- PostgreSQL → Orders, Payments, Stock
+- MongoDB → Customers, Notifications
 
-## 🚀 What This Project Does
-
-This project simulates a small online store where:
-
-1. A **customer** places an order.
-2. The **Stocks Service** checks product availability.
-3. The **Payment Service** processes the payment.
-4. The **Order Service** confirms and saves the order.
-5. The **Notification Service** sends an email confirmation.
-6. All services communicate asynchronously using **Kafka** and are registered via **Eureka Discovery**.
-
----
-
-## ⚙️ Main Technologies
-
-- **Java 17** & **Spring Boot 3**
-- **Spring Cloud** (Eureka, Config Server, Gateway)
-- **Apache Kafka** (event-driven communication)
-- **PostgreSQL** & **MongoDB**
-- **Docker & Docker Compose**
-- **Thymeleaf** (for email templates)
-- **Lombok**, **Spring Validation**, **JPA / Hibernate**
-
----
-
-## 🧩 Microservices Included
-
-| Service | Description |
-|----------|--------------|
-| **Eureka Server** | Service discovery for all microservices |
-| **Config Server** | Centralized configuration management |
-| **API Gateway** | Routes all API requests |
-| **Customer Service** | Manages customer data |
-| **Order Service** | Handles order creation and management |
-| **Payment Service** | Processes customer payments |
-| **Stock Service** | Manages product inventory and stock levels |
-| **Notification Service** | Sends order and payment confirmation emails |
-
----
-
-## 🗄️ Databases Used
-
-| Service                | Database |
-|------------------------|-----------|
-| Order, Payment, Stock  | PostgreSQL |
-| Notification ,Customer | MongoDB |
-
----
-
-## 🧰 How to Run
-
-### 1️⃣ Start Infrastructure with Docker
-
-Run the command below to start all supporting services(PostgreSQL, MongoDB, Kafka, Zookeeper, Zipkin, and MailDev):
-
+## 🧪 How to Run
 ```bash
 docker-compose up -d
