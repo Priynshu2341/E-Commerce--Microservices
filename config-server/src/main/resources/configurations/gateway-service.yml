@@ -23,7 +23,7 @@ spring:
           predicates:
             - Path=/api/v1/order-lines/**
 
-        - id: stock-service
+        - id: stocks-service
           uri: lb://STOCKS-SERVICE
           predicates:
             - Path=/api/v1/stocks/**
@@ -44,3 +44,11 @@ management:
   endpoint:
     gateway:
       enabled: true
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

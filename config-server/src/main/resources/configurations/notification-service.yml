@@ -4,10 +4,10 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:admin@127.0.0.1:27018/notifications?authSource=admin
+      uri: mongodb://admin:admin@mongo:27017/notifications?authSource=admin
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: notification-service
       auto-offset-reset: earliest
@@ -22,7 +22,7 @@ spring:
           PaymentNotificationRequest:com.example.ecommerce.kafka.payment.PaymentNotificationRequest
 
   mail:
-    host: localhost
+    host: maildev
     port: 1025
     properties:
       mail.smtp.auth: false
@@ -30,3 +30,12 @@ spring:
       mail.smtp.connectiontimeout: 5000
       mail.smtp.timeout: 3000
       mail.smtp.writetimeout: 5000
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

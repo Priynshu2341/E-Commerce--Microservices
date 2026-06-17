@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
+    url: jdbc:postgresql://ms_pg_sql:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
     username: venom
     password: venom
     driver-class-name: org.postgresql.Driver
@@ -22,7 +22,7 @@ spring:
       hibernate.jdbc.time_zone: Asia/Kolkata
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -33,6 +33,15 @@ spring:
 
 application:
   config:
-    customer-url: http://localhost:8222/api/v1/customers
-    payment-url:  http://localhost:8222/api/v1/payments
-    stock-url:    http://localhost:8222/api/v1/stocks
+    customer-url: http://customer-service:8090/api/v1/customers
+    payment-url:  http://payment-service:8070/api/v1/payments
+    stock-url:    http://stocks-service:8050/api/v1/stocks
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

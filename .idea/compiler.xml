@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.5.7/18e7a39068a84cd401d758162a5a23a8b8b47b22/spring-boot-configuration-processor-3.5.7.jar" />
+        </processorPath>
+        <module name="E-commerce--microservices.config-server.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.42/8365263844ebb62398e0dc33057ba10ba472d3b8/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="E-commerce--microservices.customer.main" />
+        <module name="E-commerce--microservices.stocks.main" />
+        <module name="E-commerce--microservices.notification.main" />
+        <module name="E-commerce--microservices.order.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.42/8365263844ebb62398e0dc33057ba10ba472d3b8/lombok-1.18.42.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.5.7/18e7a39068a84cd401d758162a5a23a8b8b47b22/spring-boot-configuration-processor-3.5.7.jar" />
+        </processorPath>
+        <module name="E-commerce--microservices.payment.main" />
+      </profile>
+    </annotationProcessing>
+  </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="E-commerce--microservices.config-server" options="-parameters" />
+      <module name="E-commerce--microservices.config-server.main" options="-parameters" />
+      <module name="E-commerce--microservices.config-server.test" options="-parameters" />
+      <module name="E-commerce--microservices.customer" options="-parameters" />
+      <module name="E-commerce--microservices.customer.main" options="-parameters" />
+      <module name="E-commerce--microservices.customer.test" options="-parameters" />
+      <module name="E-commerce--microservices.discovery" options="-parameters" />
+      <module name="E-commerce--microservices.discovery.main" options="-parameters" />
+      <module name="E-commerce--microservices.discovery.test" options="-parameters" />
+      <module name="E-commerce--microservices.gateway" options="-parameters" />
+      <module name="E-commerce--microservices.gateway.main" options="-parameters" />
+      <module name="E-commerce--microservices.gateway.test" options="-parameters" />
+      <module name="E-commerce--microservices.notification" options="-parameters" />
+      <module name="E-commerce--microservices.notification.main" options="-parameters" />
+      <module name="E-commerce--microservices.notification.test" options="-parameters" />
+      <module name="E-commerce--microservices.order" options="-parameters" />
+      <module name="E-commerce--microservices.order.main" options="-parameters" />
+      <module name="E-commerce--microservices.order.test" options="-parameters" />
+      <module name="E-commerce--microservices.payment" options="-parameters" />
+      <module name="E-commerce--microservices.payment.main" options="-parameters" />
+      <module name="E-commerce--microservices.payment.test" options="-parameters" />
+      <module name="E-commerce--microservices.stocks" options="-parameters" />
+      <module name="E-commerce--microservices.stocks.main" options="-parameters" />
+      <module name="E-commerce--microservices.stocks.test" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server.main" options="-parameters" />
       <module name="config-server.test" options="-parameters" />

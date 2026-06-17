@@ -1,0 +1,11 @@
+rootProject.name = "E-commerce--microservices"
+
+
+include 'gateway'
+include 'customer'
+include 'discovery'
+include 'config-server'
+include 'stocks'
+include 'order'
+include 'payment'
+include 'notification'

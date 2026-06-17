@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
+    url: jdbc:postgresql://ms_pg_sql:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
     username: venom
     password: venom
     driver-class-name: org.postgresql.Driver
@@ -20,3 +20,13 @@ spring:
 
 server:
   port: 8050
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

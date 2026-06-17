@@ -1,9 +1,6 @@
 version: "3.8"
 
 services:
-  # --------------------------
-  # PostgreSQL
-  # --------------------------
   postgres:
     container_name: ms_pg_sql
     image: postgres:16
@@ -22,9 +19,7 @@ services:
       - microservices-net
     restart: unless-stopped
 
-  # --------------------------
-  # pgAdmin (Postgres UI)
-  # --------------------------
+
   pgadmin:
     container_name: ms_pgadmin
     image: dpage/pgadmin4:latest
@@ -42,12 +37,10 @@ services:
       - microservices-net
     restart: unless-stopped
 
-  # --------------------------
-  # MongoDB
-  # --------------------------
+
   mongo:
     container_name: ms_mongo_db
-    image: mongo:latest
+    image: mongo:7.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
@@ -59,12 +52,10 @@ services:
       - microservices-net
     restart: unless-stopped
 
-  # --------------------------
-  # Mongo Express (Mongo UI)
-  # --------------------------
+
   mongo-express:
     container_name: ms_mongo_express
-    image: mongo-express:latest
+    image: mongo-express:1.0.2
     depends_on:
       - mongo
     environment:
@@ -77,9 +68,7 @@ services:
       - microservices-net
     restart: unless-stopped
 
-  # --------------------------
-  # Zookeeper (for Kafka)
-  # --------------------------
+
   zookeeper:
     container_name: ms_zookeeper
     image: confluentinc/cp-zookeeper:7.5.0
@@ -92,9 +81,7 @@ services:
       - microservices-net
     restart: unless-stopped
 
-  # --------------------------
-  # Kafka Broker
-  # --------------------------
+
   kafka:
     container_name: ms_kafka
     image: confluentinc/cp-kafka:7.5.0
@@ -104,7 +91,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
@@ -115,9 +102,7 @@ services:
       - microservices-net
     restart: unless-stopped
 
-    # --------------------------
-  # MailDev (SMTP testing)
-  # --------------------------
+
   maildev:
     container_name: ms_mail_dev
     image: maildev/maildev:latest
@@ -131,15 +116,17 @@ services:
   zipkin:
     container_name: zipkin
     image: openzipkin/zipkin
+    restart: unless-stopped
     ports:
       - "9411:9411"
     networks:
       microservices-net:
-  # docker-compose.yml (add this service)
+
 
   keycloak:
+    container_name: keycloak
     image: quay.io/keycloak/keycloak:24.0
-    command: [ "start-dev", "--http-port=8089" ]   # dev mode, port 8089 to avoid clashes
+    command: [ "start-dev", "--http-port=8089" ]
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
@@ -149,9 +136,122 @@ services:
       - "8089:8089"
 
 
-# --------------------------
-# Network and Volumes
-# --------------------------
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    healthcheck:
+      test: [ "CMD","curl","-f","http://localhost:8888/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - microservices-net
+
+
+
+  eureka-discovery:
+    build: ./discovery
+    container_name: eureka-discovery
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: [ "CMD","curl","-f","http://localhost:8761/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+  gateway-service:
+    build: ./gateway
+    container_name: gateway-service
+    restart: unless-stopped
+    ports:
+      - "8222:8222"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+
+
+  customer-service:
+    build: ./customer
+    container_name: customer-service
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+
+  order-service:
+    build: ./order
+    container_name: order-service
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+  payment-service:
+    build: ./payment
+    container_name: payment-service
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+  stocks-service:
+    build: ./stocks
+    container_name: stocks-service
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+
+    networks:
+      - microservices-net
+
+
+  notification-service:
+    build: ./notification
+    container_name: notification-service
+    restart: unless-stopped
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-discovery:
+        condition: service_healthy
+    networks:
+      - microservices-net
+
+
+
+
+
 networks:
   microservices-net:
     driver: bridge
