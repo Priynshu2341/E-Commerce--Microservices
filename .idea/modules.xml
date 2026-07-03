@@ -3,10 +3,17 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-server/E-commerce--microservices.config-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/config-server/E-commerce--microservices.config-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer/E-commerce--microservices.customer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/customer/E-commerce--microservices.customer.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/notification/E-commerce--microservices.notification.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notification/E-commerce--microservices.notification.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/order/E-commerce--microservices.order.main.iml" filepath="$PROJECT_DIR$/.idea/modules/order/E-commerce--microservices.order.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/payment/E-commerce--microservices.payment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/payment/E-commerce--microservices.payment.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stocks/E-commerce--microservices.stocks.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stocks/E-commerce--microservices.stocks.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/config-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/customer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/notification.main.iml" filepath="$PROJECT_DIR$/.idea/modules/notification.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/order.main.iml" filepath="$PROJECT_DIR$/.idea/modules/order.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/payment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/payment.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stocks.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stocks.main.iml" />
     </modules>
   </component>
 </project>
