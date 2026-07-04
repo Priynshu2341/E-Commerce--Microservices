@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+      override-system-properties: true
+
+server:
+  port: 8888
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-discovery:8761/eureka
+
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
