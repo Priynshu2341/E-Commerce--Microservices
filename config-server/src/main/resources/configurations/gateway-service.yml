@@ -22,8 +22,8 @@ spring:
           predicates:
             - Path=/api/v1/order-lines/**
 
-        - id: stocks-service
-          uri: lb://STOCKS-SERVICE
+        - id: stock-service
+          uri: lb://STOCK-SERVICE
           predicates:
             - Path=/api/v1/stocks/**
 
@@ -48,9 +48,9 @@ management:
     sampling:
       probability: 1.0
 
-zipkin:
-  tracing:
-    endpoint: http://zipkin:9411/api/v2/spans
+  zipkin:
+    tracing:
+     endpoint: http://zipkin:9411/api/v2/spans
 eureka:
   client:
     service-url:

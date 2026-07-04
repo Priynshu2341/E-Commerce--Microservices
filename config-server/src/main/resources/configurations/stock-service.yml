@@ -7,23 +7,17 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://ms_pg_sql:5432/ecommerce?options=-c%20TimeZone=Asia/Kolkata
+    url: jdbc:postgresql://ms_pg_sql:5432/ecommerce
     username: venom
     password: venom
     driver-class-name: org.postgresql.Driver
-    hikari:
-      connection-init-sql: SET TIME ZONE 'Asia/Kolkata'
-      connection-test-query: SELECT 1
 
-  jackson:
-    time-zone: Asia/Kolkata
 
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties:
-      hibernate.jdbc.time_zone: Asia/Kolkata
+
 
   kafka:
     bootstrap-servers: kafka:9092

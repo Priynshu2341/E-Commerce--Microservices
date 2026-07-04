@@ -3,14 +3,6 @@ spring:
     mongodb:
       uri: mongodb://admin:admin@mongo:27017/customer?authSource=admin
 
-  kafka:
-    producer:
-      bootstrap-servers: kafka:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.type.mapping: OrderConfirmation:com.example.ecommerce.kafka.order.OrderConfirmation
-
 
 server:
   port: 8090
@@ -28,3 +20,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-discovery:8761/eureka
+
+logging:
+  level:
+    org.springframework.boot.context.properties: TRACE
+    org.springframework.boot.autoconfigure.mongo: TRACE

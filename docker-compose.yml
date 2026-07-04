@@ -8,17 +8,20 @@ services:
       POSTGRES_USER: venom
       POSTGRES_PASSWORD: venom
       POSTGRES_DB: ecommerce
-      TZ: Asia/Kolkata
-      PGTZ: Asia/Kolkata
-    command: [ "postgres", "-c", "timezone=Asia/Kolkata" ]
+    command: [ "postgres" ]
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U venom -d ecommerce" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
     networks:
       - microservices-net
     restart: unless-stopped
-
 
   pgadmin:
     container_name: ms_pgadmin
@@ -40,7 +43,7 @@ services:
 
   mongo:
     container_name: ms_mongo_db
-    image: mongo:8.0.12
+    image: mongo:8.0.4
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
@@ -48,6 +51,24 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mongosh",
+          "--username",
+          "admin",
+          "--password",
+          "admin",
+          "--authenticationDatabase",
+          "admin",
+          "--eval",
+          "db.adminCommand('ping')"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
     networks:
       - microservices-net
     restart: unless-stopped
@@ -142,6 +163,11 @@ services:
     restart: unless-stopped
     ports:
       - "8888:8888"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
     healthcheck:
       test: [ "CMD","curl","-f","http://localhost:8888/actuator/health" ]
       interval: 10s
@@ -189,6 +215,8 @@ services:
     build: ./customer-service
     container_name: customer-service
     restart: unless-stopped
+    ports:
+      - "8090:8090"
     depends_on:
       config-server:
         condition: service_healthy
@@ -224,7 +252,7 @@ services:
 
   stock-service:
     build: ./stock-service
-    container_name: stocks-service
+    container_name: stock-service
     restart: unless-stopped
     depends_on:
       config-server:
