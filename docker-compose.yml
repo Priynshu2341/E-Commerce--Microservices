@@ -40,7 +40,7 @@ services:
 
   mongo:
     container_name: ms_mongo_db
-    image: mongo:7.0
+    image: mongo:8.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
