@@ -5,6 +5,7 @@ import com.example.order_service.dtos.requestdtos.OrderRequest;
 import com.example.order_service.dtos.responsedtos.OrderCreationResponse;
 import com.example.order_service.dtos.responsedtos.OrderResponse;
 import com.example.order_service.service.OrderService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class OrderController {
     private final OrderService service;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest request) {
+    public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest request) throws JsonProcessingException {
         OrderResponse data = service.createOrder(request);
         var response = new OrderCreationResponse<OrderResponse>("Order Placed Successfully",data);
         return ResponseEntity.ok(response);

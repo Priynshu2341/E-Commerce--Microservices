@@ -3,25 +3,25 @@ spring:
     mongodb:
       uri: mongodb://admin:admin@mongo:27017/customer?authSource=admin
 
-
 server:
   port: 8090
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
   tracing:
     sampling:
       probability: 1.0
 
-zipkin:
-  tracing:
-    endpoint: http://zipkin:9411/api/v2/spans
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-discovery:8761/eureka
 
-logging:
-  level:
-    org.springframework.boot.context.properties: TRACE
-    org.springframework.boot.autoconfigure.mongo: TRACE

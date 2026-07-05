@@ -13,6 +13,7 @@ import com.example.order_service.feignclient.ProductClient;
 import com.example.order_service.kafka.OrderConfirmation;
 import com.example.order_service.kafka.OrderProducer;
 import com.example.order_service.rep.OrderRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class OrderService {
     private final OrderProducer orderProducer;
     private final PaymentClient paymentClient;
 
-    public OrderResponse createOrder(OrderRequest request) {
+    public OrderResponse createOrder(OrderRequest request) throws JsonProcessingException {
         var customer = customerClient.findCustomerByID(request.customerId())
                 .orElseThrow(() -> new BusinessException("Cannot Create Customer:: No Customer Exist With ID" + request.customerId()));
 

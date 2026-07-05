@@ -6,6 +6,7 @@ import com.example.payment_service.dtos.PaymentResponse;
 import com.example.payment_service.kafka.NotificationProducer;
 import com.example.payment_service.kafka.PaymentNotificationRequest;
 import com.example.payment_service.repository.PaymentRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class PaymentService {
     private final PaymentMapper mapper;
     private final NotificationProducer notificationProducer;
 
-    public Integer createPayment(@Valid PaymentRequest request) {
+    public Integer createPayment(@Valid PaymentRequest request) throws JsonProcessingException {
         log.info("saving payment Request {}", request);
         var payment = repository.save(mapper.toPayment(request));
 

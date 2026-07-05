@@ -27,7 +27,8 @@ services:
     container_name: ms_pgadmin
     image: dpage/pgadmin4:9.6
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.org
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -78,7 +79,8 @@ services:
     container_name: ms_mongo_express
     image: mongo-express:1.0.2
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://admin:admin@mongo:27017/?authSource=admin
       ME_CONFIG_BASICAUTH_USERNAME: admin
@@ -221,6 +223,8 @@ services:
       config-server:
         condition: service_healthy
       eureka-discovery:
+        condition: service_healthy
+      zipkin:
         condition: service_healthy
     networks:
       - microservices-net

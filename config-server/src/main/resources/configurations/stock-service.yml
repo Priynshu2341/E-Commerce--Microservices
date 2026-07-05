@@ -12,22 +12,26 @@ spring:
     password: venom
     driver-class-name: org.postgresql.Driver
 
-
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 
-  kafka:
-    bootstrap-servers: kafka:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.add.type.headers: true
-        spring.json.trusted.packages: com.example.ecommerce.*
-        spring.json.type.mapping: PaymentNotificationRequest:com.example.ecommerce.kafka.PaymentNotificationRequest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
 
 logging:
   level:
@@ -35,16 +39,6 @@ logging:
     org.springframework.web: INFO
     org.hibernate.SQL: INFO
     org.apache.kafka: INFO
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-
-zipkin:
-  tracing:
-    endpoint: http://zipkin:9411/api/v2/spans
-
 
 eureka:
   client:

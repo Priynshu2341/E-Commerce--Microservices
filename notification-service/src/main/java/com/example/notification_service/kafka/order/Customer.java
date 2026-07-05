@@ -4,6 +4,7 @@ public record Customer(
         String id,
         String firstname,
         String lastname,
-        String email
+        String email,
+        Address address
 ) {
 }
