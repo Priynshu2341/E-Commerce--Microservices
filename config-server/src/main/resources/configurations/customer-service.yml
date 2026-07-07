@@ -1,6 +1,7 @@
 spring:
   data:
     mongodb:
+      auto-index-creation: true
       uri: mongodb://admin:admin@mongo:27017/customer?authSource=admin
 
 server:

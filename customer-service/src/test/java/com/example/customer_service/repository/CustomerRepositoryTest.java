@@ -3,6 +3,7 @@ package com.example.customer_service.repository;
 
 import com.example.customer_service.model.Customer;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,13 @@ public class CustomerRepositoryTest {
         registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
     }
 
+
+    @BeforeEach
+    void shouldClearDatabase(){
+        customerRepository.deleteAll();
+    }
+
+
     @Test
     void shouldSaveCustomer() {
         Customer customer = Customer.builder()
@@ -65,6 +73,74 @@ public class CustomerRepositoryTest {
         Assertions.assertEquals("Priyanshu", result.get().getFirstname());
         Assertions.assertEquals("Kushwaha", result.get().getLastname());
         Assertions.assertEquals("priyanshu@gmail.com", result.get().getEmail());
+    }
+
+
+
+    @Test
+    void shouldFindCustomerByEmail() {
+        Customer customer = Customer.builder()
+                .firstname("Priyanshu")
+                .lastname("Kushwaha")
+                .email("priyanshu@gmail.com")
+                .build();
+
+        customerRepository.save(customer);
+
+        Optional<Customer> result =
+                customerRepository.findByEmail("priyanshu@gmail.com");
+
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals("Priyanshu", result.get().getFirstname());
+    }
+
+    @Test
+    void shouldReturnEmptyWhenEmailNotFound() {
+
+        Optional<Customer> result =
+                customerRepository.findByEmail("abc@gmail.com");
+
+        Assertions.assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void shouldDeleteCustomer() {
+        Customer customer = Customer.builder()
+                .firstname("Priyanshu")
+                .lastname("Kushwaha")
+                .email("priyanshu@gmail.com")
+                .build();
+
+
+        Customer saved = customerRepository.save(customer);
+
+        customerRepository.delete(saved);
+
+        Assertions.assertFalse(
+                customerRepository.findById(saved.getId()).isPresent()
+        );
+    }
+
+    @Test
+    void shouldUpdateCustomer() {
+
+        Customer customer = Customer.builder()
+                .firstname("Priyanshu")
+                .lastname("Kushwaha")
+                .email("priyanshu@gmail.com")
+                .build();
+
+
+        Customer saved = customerRepository.save(customer);
+
+        saved.setFirstname("John");
+
+        customerRepository.save(saved);
+
+        Customer updated =
+                customerRepository.findById(saved.getId()).get();
+
+        Assertions.assertEquals("John", updated.getFirstname());
     }
 
 }

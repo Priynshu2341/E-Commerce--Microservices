@@ -7,6 +7,7 @@ import com.example.common.customer.CustomerResponse;
 import com.example.customer_service.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,9 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createCustomer(@RequestBody CustomerRequest request) {
-        return ResponseEntity.ok(service.createCustomer(request));
+    public ResponseEntity<String> createCustomer(@Valid @RequestBody CustomerRequest request) {
+        String customerId = service.createCustomer(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerId);
     }
 
     @PutMapping("/update")

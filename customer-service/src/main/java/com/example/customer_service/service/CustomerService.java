@@ -60,7 +60,7 @@ public class CustomerService {
         return repository.findById(id).isPresent();
     }
 
-    public com.example.common.customer.CustomerResponse findById(String id) {
+    public CustomerResponse findById(String id) {
         return repository.findById(id)
                 .map(mapper::fromCustomer)
                 .orElseThrow(() -> new CustomerNotFoundException("Invalid Customer id" + id));

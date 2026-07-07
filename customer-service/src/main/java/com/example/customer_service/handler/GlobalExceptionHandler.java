@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
                     errors.put(fieldName, errorMsg);
                 });
         return ResponseEntity
-                .status(HttpStatus.BAD_GATEWAY)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(errors));
     }
 
