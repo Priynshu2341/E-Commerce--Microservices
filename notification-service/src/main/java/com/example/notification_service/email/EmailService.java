@@ -1,9 +1,10 @@
 package com.example.notification_service.email;
 
 
+import com.example.common.order.OrderConfirmation;
+import com.example.common.payment.PaymentNotificationRequest;
 import com.example.notification_service.entity.EmailTemplates;
-import com.example.notification_service.kafka.order.OrderConfirmation;
-import com.example.notification_service.kafka.payment.PaymentNotificationRequest;
+
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,9 @@
 package com.example.order_service.feignclient;
 
 
-import com.example.order_service.dtos.requestdtos.PurchaseRequest;
-import com.example.order_service.dtos.responsedtos.PurchaseResponse;
+
+import com.example.common.order.PurchaseRequest;
+import com.example.common.order.PurchaseResponse;
 import com.example.order_service.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

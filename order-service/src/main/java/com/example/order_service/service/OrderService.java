@@ -1,16 +1,16 @@
 package com.example.order_service.service;
 
 
+import com.example.common.order.OrderConfirmation;
+import com.example.common.order.OrderRequest;
+import com.example.common.order.OrderResponse;
+import com.example.common.order.PurchaseRequest;
+import com.example.common.payment.PaymentRequest;
 import com.example.order_service.dtos.requestdtos.OrderLineRequest;
-import com.example.order_service.dtos.requestdtos.OrderRequest;
-import com.example.order_service.dtos.requestdtos.PaymentRequest;
-import com.example.order_service.dtos.requestdtos.PurchaseRequest;
-import com.example.order_service.dtos.responsedtos.OrderResponse;
 import com.example.order_service.exception.BusinessException;
 import com.example.order_service.feignclient.CustomerClient;
 import com.example.order_service.feignclient.PaymentClient;
 import com.example.order_service.feignclient.ProductClient;
-import com.example.order_service.kafka.OrderConfirmation;
 import com.example.order_service.kafka.OrderProducer;
 import com.example.order_service.rep.OrderRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;

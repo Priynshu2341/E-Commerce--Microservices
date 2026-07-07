@@ -1,8 +1,8 @@
 package com.example.notification_service.entity;
 
 
-import com.example.notification_service.kafka.order.OrderConfirmation;
-import com.example.notification_service.kafka.payment.PaymentNotificationRequest;
+import com.example.common.order.OrderConfirmation;
+import com.example.common.payment.PaymentNotificationRequest;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

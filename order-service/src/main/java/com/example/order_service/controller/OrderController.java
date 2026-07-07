@@ -1,9 +1,10 @@
 package com.example.order_service.controller;
 
 
-import com.example.order_service.dtos.requestdtos.OrderRequest;
+
+import com.example.common.order.OrderRequest;
+import com.example.common.order.OrderResponse;
 import com.example.order_service.dtos.responsedtos.OrderCreationResponse;
-import com.example.order_service.dtos.responsedtos.OrderResponse;
 import com.example.order_service.service.OrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;

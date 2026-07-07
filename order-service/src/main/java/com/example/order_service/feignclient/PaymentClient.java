@@ -1,7 +1,7 @@
 package com.example.order_service.feignclient;
 
 
-import com.example.order_service.dtos.requestdtos.PaymentRequest;
+import com.example.common.payment.PaymentRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

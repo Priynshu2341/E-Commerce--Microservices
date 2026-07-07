@@ -1,8 +1,9 @@
 package com.example.customer_service.controller;
 
 
-import com.example.customer_service.dto.CustomerRequest;
-import com.example.customer_service.dto.CustomerResponse;
+
+import com.example.common.customer.CustomerRequest;
+import com.example.common.customer.CustomerResponse;
 import com.example.customer_service.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

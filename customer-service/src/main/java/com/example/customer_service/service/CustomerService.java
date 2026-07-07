@@ -1,8 +1,8 @@
 package com.example.customer_service.service;
 
 
-import com.example.customer_service.dto.CustomerRequest;
-import com.example.customer_service.dto.CustomerResponse;
+import com.example.common.customer.CustomerRequest;
+import com.example.common.customer.CustomerResponse;
 import com.example.customer_service.exception.CustomerNotFoundException;
 import com.example.customer_service.model.Customer;
 import com.example.customer_service.repository.CustomerRepository;
@@ -60,7 +60,7 @@ public class CustomerService {
         return repository.findById(id).isPresent();
     }
 
-    public CustomerResponse findById(String id) {
+    public com.example.common.customer.CustomerResponse findById(String id) {
         return repository.findById(id)
                 .map(mapper::fromCustomer)
                 .orElseThrow(() -> new CustomerNotFoundException("Invalid Customer id" + id));

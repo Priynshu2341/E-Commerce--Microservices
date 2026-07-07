@@ -1,8 +1,9 @@
 package com.example.payment_service.service;
 
 
-import com.example.payment_service.dtos.PaymentRequest;
-import com.example.payment_service.dtos.PaymentResponse;
+import com.example.common.payment.PaymentRequest;
+
+import com.example.common.payment.PaymentResponse;
 import com.example.payment_service.entity.Payment;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;

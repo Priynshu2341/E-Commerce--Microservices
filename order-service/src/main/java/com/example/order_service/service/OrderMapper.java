@@ -1,8 +1,9 @@
 package com.example.order_service.service;
 
 
-import com.example.order_service.dtos.requestdtos.OrderRequest;
-import com.example.order_service.dtos.responsedtos.OrderResponse;
+
+import com.example.common.order.OrderRequest;
+import com.example.common.order.OrderResponse;
 import com.example.order_service.entity.Orders;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

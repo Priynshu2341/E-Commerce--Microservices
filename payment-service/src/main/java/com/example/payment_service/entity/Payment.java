@@ -1,5 +1,6 @@
 package com.example.payment_service.entity;
 
+import com.example.common.payment.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

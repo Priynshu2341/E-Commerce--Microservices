@@ -1,10 +1,10 @@
 package com.example.notification_service.kafka;
 
 
+import com.example.common.order.OrderConfirmation;
+import com.example.common.payment.PaymentNotificationRequest;
 import com.example.notification_service.email.EmailService;
 import com.example.notification_service.entity.Notifications;
-import com.example.notification_service.kafka.order.OrderConfirmation;
-import com.example.notification_service.kafka.payment.PaymentNotificationRequest;
 import com.example.notification_service.repository.NotificationRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

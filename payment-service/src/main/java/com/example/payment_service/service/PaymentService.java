@@ -1,10 +1,10 @@
 package com.example.payment_service.service;
 
 
-import com.example.payment_service.dtos.PaymentRequest;
-import com.example.payment_service.dtos.PaymentResponse;
+import com.example.common.payment.PaymentNotificationRequest;
+import com.example.common.payment.PaymentRequest;
+import com.example.common.payment.PaymentResponse;
 import com.example.payment_service.kafka.NotificationProducer;
-import com.example.payment_service.kafka.PaymentNotificationRequest;
 import com.example.payment_service.repository.PaymentRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.validation.Valid;

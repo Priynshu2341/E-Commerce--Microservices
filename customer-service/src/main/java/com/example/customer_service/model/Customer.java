@@ -1,5 +1,6 @@
 package com.example.customer_service.model;
 
+import com.example.common.customer.Address;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,5 +1,6 @@
 package com.example.order_service.entity;
 
+import com.example.common.payment.PaymentMethod;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

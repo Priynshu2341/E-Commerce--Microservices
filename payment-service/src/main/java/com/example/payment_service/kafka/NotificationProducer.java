@@ -1,6 +1,7 @@
 package com.example.payment_service.kafka;
 
 
+import com.example.common.payment.PaymentNotificationRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
