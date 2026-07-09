@@ -79,4 +79,8 @@ public class StockService {
         return category.getId();
 
     }
+
+    public Long countItemsInRepository(){
+        return repository.count();
+    }
 }

@@ -19,7 +19,6 @@ public class StockMapper {
     public Stocks toStock(@Valid StockRequest request) {
         return Stocks
                 .builder()
-                .id(request.id())
                 .price(request.price())
                 .availableQuantity(request.availableQuantity())
                 .name(request.name())

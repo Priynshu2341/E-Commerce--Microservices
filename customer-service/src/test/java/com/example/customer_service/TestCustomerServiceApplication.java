@@ -1,6 +1,8 @@
 package com.example.customer_service;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+
 
 public class TestCustomerServiceApplication {
 

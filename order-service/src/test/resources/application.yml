@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+
+eureka:
+  client:
+    enabled: false
+
+management:
+  tracing:
+    enabled: false
+
+application:
+  config:
+    customer-url: http://localhost:8090/api/v1/customers
+    payment-url: http://localhost:8010/api/v1/payments
+    stock-url: http://localhost:8070/api/v1/stocks

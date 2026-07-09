@@ -47,7 +47,7 @@ public class CustomerControllerTest {
                                 .content(objectMapper.writeValueAsString(request))
 
                 )
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().string("123"));
 
         verify(customerService).createCustomer(any(CustomerRequest.class));

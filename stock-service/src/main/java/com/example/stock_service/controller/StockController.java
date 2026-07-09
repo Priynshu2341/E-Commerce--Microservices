@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +23,18 @@ import java.util.List;
 public class StockController {
 
     private final StockService service;
-    private final StockRepository repository;
+
 
     @PostMapping("/create")
     public ResponseEntity<Integer> createStock(@RequestBody @Valid StockRequest request) {
-        return ResponseEntity.ok(service.createStock(request));
+        Integer id = service.createStock(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
     @PostMapping("/create/category")
     public ResponseEntity<Integer> createStockCategory(@RequestBody @Valid CategoryRequest request) {
-        return ResponseEntity.ok(service.createStockCategory(request));
+        Integer id = service.createStockCategory(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
 
     @PostMapping("/purchase")
@@ -49,8 +52,8 @@ public class StockController {
     public ResponseEntity<?> findAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "1") int size) {
-        var totalElements = repository.count();
-        var response = service.findAll(page, size);
+        var totalElements = service.countItemsInRepository();
+        List<StockResponse> response = service.findAll(page, size);
         Pageable pageable = PageRequest.of(page, size);
         Page<StockResponse> pageResponse = new PageImpl<>(
                 response, pageable, totalElements

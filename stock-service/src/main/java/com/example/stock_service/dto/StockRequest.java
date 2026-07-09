@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 
 public record StockRequest(
 
-        Integer id,
 
         @NotNull(message = "Stock name is Required")
         String name,

@@ -1,10 +1,12 @@
 spring:
   cloud:
-    discovery:
+    config:
       enabled: false
 
 eureka:
   client:
     enabled: false
-    register-with-eureka: false
-    fetch-registry: false
+
+management:
+  tracing:
+    enabled: false
