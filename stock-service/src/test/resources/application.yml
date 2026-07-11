@@ -2,3 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
+eureka:
+  client:
+    enabled: false

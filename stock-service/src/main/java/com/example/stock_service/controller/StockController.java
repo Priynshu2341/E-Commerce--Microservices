@@ -60,4 +60,9 @@ public class StockController {
         );
         return ResponseEntity.ok(pageResponse);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<StockResponse> updateStock(@PathVariable Integer id, @RequestBody @Valid StockRequest request) {
+        return ResponseEntity.ok(service.updateStock(id, request));
+    }
 }

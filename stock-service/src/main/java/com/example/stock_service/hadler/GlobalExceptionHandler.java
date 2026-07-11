@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(StockNotFoundException.class)
     public ResponseEntity<String> handle(StockNotFoundException e) {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
 
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
                     errors.put(fieldName, errorMsg);
                 });
         return ResponseEntity
-                .status(HttpStatus.BAD_GATEWAY)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(errors));
     }
 

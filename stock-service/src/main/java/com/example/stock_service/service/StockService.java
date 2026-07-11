@@ -5,6 +5,7 @@ import com.example.stock_service.dto.*;
 import com.example.stock_service.hadler.StockNotFoundException;
 import com.example.stock_service.rep.CategoryRepository;
 import com.example.stock_service.rep.StockRepository;
+import com.example.stock_service.stock.Stocks;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -82,5 +83,15 @@ public class StockService {
 
     public Long countItemsInRepository(){
         return repository.count();
+    }
+
+    public StockResponse updateStock(Integer id, @Valid StockRequest request) {
+        Stocks stocks = repository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
+        stocks.setName(request.name());
+        stocks.setPrice(request.price());
+        stocks.setDescription(request.description());
+        stocks.setAvailableQuantity(request.availableQuantity());
+        repository.save(stocks);
+        return mapper.toStockResponse(stocks);
     }
 }
