@@ -17,14 +17,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
-public class OrderController {
+public class  OrderController {
 
     private final OrderService service;
 
     @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest request) throws JsonProcessingException {
         OrderResponse data = service.createOrder(request);
-        var response = new OrderCreationResponse<OrderResponse>("Order Placed Successfully",data);
+        OrderCreationResponse<OrderResponse> response = new OrderCreationResponse<OrderResponse>("Order Placed Successfully",data);
         return ResponseEntity.ok(response);
     }
 
