@@ -7,6 +7,42 @@ spring:
           lower-case-service-id: false
 
       routes:
+
+        # Swagger / OpenAPI routes
+
+        - id: customer-swagger
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customer/v3/api-docs
+          filters:
+            - RewritePath=/customer/v3/api-docs, /v3/api-docs
+
+        - id: order-swagger
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order/v3/api-docs
+          filters:
+            - RewritePath=/order/v3/api-docs, /v3/api-docs
+
+        - id: stock-swagger
+          uri: lb://STOCK-SERVICE
+          predicates:
+            - Path=/stock/v3/api-docs
+          filters:
+            - RewritePath=/stock/v3/api-docs, /v3/api-docs
+
+        - id: payment-swagger
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment/v3/api-docs
+          filters:
+            - RewritePath=/payment/v3/api-docs, /v3/api-docs
+
+
+
+        # Application API routes
+
+
         - id: customer-service
           uri: lb://CUSTOMER-SERVICE
           predicates:
@@ -32,8 +68,33 @@ spring:
           predicates:
             - Path=/api/v1/payments/**
 
+
 server:
   port: 8222
+
+
+
+# Swagger / OpenAPI
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Customer Service
+        url: /customer/v3/api-docs
+
+      - name: Order Service
+        url: /order/v3/api-docs
+
+      - name: Stock Service
+        url: /stock/v3/api-docs
+
+      - name: Payment Service
+        url: /payment/v3/api-docs
+
+
+
 
 management:
   endpoints:
@@ -52,6 +113,7 @@ management:
   zipkin:
     tracing:
       endpoint: http://zipkin:9411/api/v2/spans
+
 
 eureka:
   client:

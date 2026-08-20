@@ -214,8 +214,11 @@ services:
 
 
   customer-service:
+    container_name: customer-service
     build: ./customer-service
     restart: unless-stopped
+    ports:
+      - "8090:8090"
     depends_on:
       config-server:
         condition: service_healthy
@@ -228,8 +231,11 @@ services:
 
 
   order-service:
+    container_name: order-service
     build: ./order-service
     restart: unless-stopped
+    ports:
+      - "8060:8060"
     depends_on:
       config-server:
         condition: service_healthy
@@ -250,8 +256,11 @@ services:
       - microservices-net
 
   stock-service:
+    container_name: stock-service
     build: ./stock-service
     restart: unless-stopped
+    ports:
+      - "8070:8070"
     depends_on:
       config-server:
         condition: service_healthy
